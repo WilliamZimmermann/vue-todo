@@ -3,13 +3,13 @@
     <h1>Vue TODO</h1>
     <label>
       Nova tarefa:
-      <input autofocus type='text'>
+      <input autofocus type='text' @keyup.enter="addTask($event.target.value)">
     </label>
     <p>Minhas tarefas:</p>
     <ul>
-      <li>Estudar</li>
-      <li>Correr</li>
-      <li>Dormir</li>
+      <li v-for="task in tasks">
+        {{ task }}
+      </li>
     </ul>
   </div>
 </template>
@@ -25,6 +25,12 @@ export default {
           'Dormir',
           'Videogame',
       ]
+    }
+  },
+
+  methods: {
+    addTask: function(newTask){
+      this.tasks.push(newTask);
     }
   }
 }
